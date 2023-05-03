@@ -14,15 +14,6 @@
 </head>
 
 <body>
-  <article data-modal class="is-hidden backdrop">
-    <div class="modal-window">
-      <button data-modal-close class="modal-close">
-        <svg class="modal-close-icon" width="8" height="8">
-          <use href="./images/icons.svg#icon-close-svg"></use>
-        </svg>
-      </button>
-    </div>
-  </article>
 
   <header class="main-header">
     <div class="container header-container">
@@ -51,11 +42,9 @@
 
     <!-- Section 1 - Hero -->
     <section class="section hero">
-      <div>
-        <div class="container">
-          <h1 class="hero-header">Effective Solutions for Your Business</h1>
-          <button data-modal-open type="button" class="button btn-order">Order Service</button>
-        </div>
+      <div class="container">
+        <h1 class="hero-header">Effective Solutions for Your Business</h1>
+        <button data-modal-open class="btn-order" type="button">Order Service</button>
       </div>
 
     </section>
@@ -294,7 +283,7 @@
           <li class="customers-list-item">
             <a href="" class="customers-list-link">
               <svg class="customers-icon" width="104" height="56">
-                <use href="./images/symbol-defs.svg#icon-customer_logo_01"></use>
+                <use href="./images/icons.svg#icon-customer_logo_01"></use>
               </svg>
             </a>
           </li>
@@ -385,6 +374,39 @@
 
     </div>
   </footer>
+
+  <!-- Modal window -->
+  <div data-modal class="is-hidden backdrop">
+    <div class="modal-window">
+      <button data-modal-close class="modal-close">
+        <svg class="modal-close-icon" width="8" height="8">
+          <use href="./images/icons.svg#icon-close-svg"></use>
+        </svg>
+      </button>
+
+      <p class="modal-title">Leave your contacts and we will call you back</p>
+
+      <form class="modal-form" name="contactForm" autocomplete="on">
+        <label class="modal-form-label">Name
+          <input type="text" name="name" id="name" placeholder="John Doe" required>
+        </label>
+        <label class="modal-form-label">Phone
+          <input type="tel" name="phone" id="phone" placeholder="+1 234 567 890">
+        </label>
+        <label class="modal-form-label">Email
+          <input type="email" name="email" id="name" placeholder="johndoe@email.com" required>
+        </label>
+        <label class="modal-form-label">Comment
+          <textarea rows="8" name="comment" placeholder="Enter your comment here"></textarea>
+        </label>
+        <label class="modal-form-label modal-form-terms">
+          <input type="checkbox" name="terms" id="terms" required>
+          I accept the terms and conditions of the Privacy Policy
+        </label>
+      </form>
+
+    </div>
+  </div>
 
   <!-- Script - Modal window -->
   <script src="./js/modal.js"></script>

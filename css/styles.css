@@ -13,6 +13,7 @@
   --portfolioScrollbar: rgba(244, 244, 253, 0.8);
   --portfolioScrollbarActive: rgba(244, 244, 253, 0.4);
   --modalWindow: #fcfcfc;
+  --modacBackdropColor: rgba(46, 47, 66, 0.4);
 }
 
 html {
@@ -112,10 +113,7 @@ p {
   border-radius: 50% 50%;
 
   /* transition values */
-  transition-property: background-color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-delay: 0;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .social-link:hover,
@@ -190,19 +188,15 @@ a.logo {
   display: flex;
   gap: 40px;
   margin: 0;
-  padding: 24px 0;
 }
 
 .menu-link {
   font-weight: 500;
   color: var(--darkColor);
+  padding: 24px 0;
   position: relative;
-
   /* transition values */
-  transition-property: color, width;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-delay: 0;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .menu-link:hover,
@@ -220,13 +214,17 @@ a.logo {
   height: 4px;
   background-color: var(--pressedStateColor);
   z-index: 1;
-  top: 45px;
   margin: 0;
   padding: 0;
   position: absolute;
+  bottom: -1px;
   border-radius: 2px 2px;
   animation: menuAnimation 250ms both;
   transform-origin: center;
+}
+
+.menu-active {
+  color: var(--pressedStateColor);
 }
 
 .menu-active::after {
@@ -236,10 +234,10 @@ a.logo {
   height: 4px;
   background-color: var(--pressedStateColor);
   z-index: 1;
-  top: 45px;
   margin: 0;
   padding: 0;
   position: absolute;
+  bottom: -1px;
   border-radius: 2px 2px;
 }
 
@@ -279,7 +277,6 @@ a.logo {
   transition-property: color;
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-delay: 0;
 }
 
 .contact:hover,
@@ -325,84 +322,8 @@ a.logo {
   padding: 0;
 }
 
-/* Modal window */
-.backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  background-color: var(--backgroundOverlayColor);
-  opacity: 1;
-
-  transition-property: visibility, opacity, pointer-events;
-  transition-duration: 500ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.backdrop.is-hidden {
-  visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.backdrop.is-hidden .modal-window {
-  transform: translateY(150%);
-}
-
-.modal-window {
-  margin: 80px auto 0;
-  height: 584px;
-  width: 408px;
-  background-color: var(--modalWindow);
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
-    0px 2px 1px rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-  display: flex;
-  justify-content: end;
-  position: absolute;
-  left: 0;
-  right: 0;
-
-  transform: translateY(0%);
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.modal-close {
-  width: 24px;
-  height: 24px;
-  background-color: var(--accentColor);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-  position: relative;
-  top: 24px;
-  right: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--darkColor);
-}
-
-.modal-close-icon {
-  fill: currentColor;
-  width: 8px;
-  height: 8px;
-}
-
-.modal-close:hover,
-.modal-close:focus {
-  background-color: var(--pressedStateColor);
-  border: 1px solid var(--pressedStateColor);
-}
-
-.modal-close:hover .modal-close-icon,
-.modal-close:focus .modal-close-icon {
-  fill: var(--bodyColor);
-}
-
 /* Button - Main page */
-.button {
+.btn-order {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   line-height: 1.5em;
@@ -423,14 +344,11 @@ a.logo {
   margin: 0 auto;
 
   /* transition values */
-  transition-property: color, background-color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-delay: 0;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.button:hover,
-.button:focus {
+.btn-order:hover,
+.btn-order:focus {
   color: var(--bodyColor);
   background-color: var(--pressedStateColor);
 }
@@ -465,37 +383,6 @@ a.logo {
   width: 64px;
   height: 64px;
 }
-
-/* Pseudoclass solution. Unfortunately such option is not accepted by autocheck :( */
-
-/* .features-item::before {
-  content: '';
-  display: block;
-  height: 112px;
-  background-color: var(--lightBackgroundColor);
-  border-radius: 4px;
-  background-size: auto 64px;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  margin-bottom: 8px;
-} 
-
-.icon-strategy::before {
-  background-image: url(../images/02_features/01_antenna.svg);
-}
-
-.icon-punctuality::before {
-  background-image: url(../images/02_features/02_clock.svg);
-}
-
-.icon-diligence::before {
-  background-image: url(../images/02_features/03_diagram.svg);
-}
-
-.icon-technology::before {
-  background-image: url(../images/02_features/04_astronaut.svg);
-}
-*/
 
 /* Section 3 - Services */
 .services {
@@ -591,10 +478,8 @@ a.logo {
   color: var(--lightSlateColor);
 
   /* transition values */
-  transition-property: color, border;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-delay: 0;
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .customers-list-link:hover,
@@ -694,10 +579,10 @@ a.logo {
   cursor: pointer;
 
   /* transition values */
-  transition-property: color, background-color, border, box-shadow;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-delay: 0;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .filter-button:active,
@@ -732,19 +617,13 @@ a.logo {
 }
 
 .portfolio-item-link {
-  display: contents;
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .portfolio-item-link:hover,
 .portfolio-item-link:focus {
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
     0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
-
-  /* transition values */
-  transition-property: box-shadow;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-delay: 0;
 }
 
 .portfolio-item-text {
@@ -769,29 +648,27 @@ a.logo {
 }
 
 .portfolio-item-overlay {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5em;
+  letter-spacing: 0.02em;
+  color: var(--lightBackgroundColor);
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: var(--primaryBrandColor);
-  padding: 40px 32px 32px;
   overflow-y: scroll;
+  padding: 40px 32px;
 
   transform: translateY(100%);
-  transition: transform 250ms ease;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.portfolio-item-link:hover .portfolio-item-overlay {
-  transform: translateY(0);
-}
-
-.portfolio-item-overlay > p {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.5em;
-  letter-spacing: 0.02em;
-  color: var(--lightBackgroundColor);
+.portfolio-item-link:hover .portfolio-item-overlay,
+.portfolio-item-link:focus .portfolio-item-overlay {
+  transform: translateY(0%);
 }
 
 /* Scrollbar styling */
@@ -809,3 +686,191 @@ a.logo {
 .portfolio-item-overlay::-webkit-scrollbar-thumb:active {
   background-color: var(--portfolioScrollbarActive);
 }
+
+/* Modal window */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background-color: var(--modacBackdropColor);
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backdrop.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal-window {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  min-height: 576px;
+  width: 408px;
+  background-color: var(--modalWindow);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  display: flex;
+  justify-content: end;
+
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backdrop.is-hidden .modal-window {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 24px;
+  height: 24px;
+  color: var(--darkColor);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--accentColor);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  background-color: #404bbf;
+  border: none;
+  color: #ffffff;
+}
+
+.modal-close-icon {
+  fill: currentColor;
+  width: 8px;
+  height: 8px;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Modal window
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background-color: var(--backgroundOverlayColor);
+  opacity: 1;
+
+  transition-property: visibility, opacity, pointer-events;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backdrop.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.backdrop.is-hidden .modal-window {
+  transform: translateY(150%);
+}
+
+.modal-window {
+  margin: 80px auto 0;
+  height: 584px;
+  width: 408px;
+  padding: 24px;
+  background-color: var(--modalWindow);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+
+  transform: translateY(0%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-close {
+  width: 24px;
+  height: 24px;
+  background-color: var(--accentColor);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  margin-left: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--darkColor);
+}
+
+.modal-close-icon {
+  fill: currentColor;
+  width: 8px;
+  height: 8px;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  background-color: var(--pressedStateColor);
+  border: 1px solid var(--pressedStateColor);
+}
+
+.modal-close:hover .modal-close-icon,
+.modal-close:focus .modal-close-icon {
+  fill: var(--bodyColor);
+}
+
+.modal-title {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5em;
+  text-align: center;
+  letter-spacing: 0.02em;
+  margin-top: 24px;
+}
+
+.modal-form {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal-form-label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal-form-terms {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  margin-top: 8px;
+  font-family: 'Roboto';
+  font-size: 12px;
+  line-height: 1.17em;
+  letter-spacing: 0.04em;
+  color: var(--lightSlateColor);
+} */
