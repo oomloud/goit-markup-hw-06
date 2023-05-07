@@ -266,6 +266,14 @@ p {
   fill: var(--pressedStateColor);
 }
 
+.form-input:focus-visible,
+.form-input:focus-within,
+.form-textarea:focus-visible,
+.form-textarea:focus-within {
+  border: 1px solid var(--pressedStateColor);
+  outline: none;
+}
+
 /* Textarea styling */
 
 .form-textarea {
@@ -983,8 +991,14 @@ a.logo {
 }
 
 .form-link {
-  margin-left: 0.33em;
   color: var(--primaryBrandColor);
+  text-decoration: underline;
+  transition: color var(--standardTransition);
+}
+
+.form-link:hover,
+.form-link:focus {
+  color: var(--pressedStateColor);
 }
 
 .modal-btn-send {
