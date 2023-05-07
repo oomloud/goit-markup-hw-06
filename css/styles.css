@@ -128,7 +128,7 @@ p {
   margin: 0 auto;
 
   /* transition values */
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 250ms var(--standardTransition);
 }
 
 .btn-primary:hover,
@@ -147,7 +147,7 @@ p {
   background-color: var(--primaryBrandColor);
   border-radius: 50% 50%;
   /* transition values */
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 250ms var(--standardTransition);
 }
 
 .social-link:hover,
@@ -195,30 +195,37 @@ p {
   appearance: none;
 }
 
-.checkbox-marker {
-  height: auto;
+.checkbox-box {
   border-radius: 2px;
   width: 16px;
   height: 16px;
-  /* box-shadow: 0 0 0 0.01em var(--textModalTransparentColor); */
   border: 1px solid var(--textModalTransparentColor);
   margin-right: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: transparent;
 
-  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border var(--standardTransition),
+    background-color var(--standardTransition), color var(--standardTransition);
+}
+
+.checkmark {
+  width: 10px;
+  height: 8px;
+  fill: currentColor;
+}
+
+.checkbox-input:hover + .checkbox-box,
+.checkbox-input:focus + .checkbox-box {
+  border: 1px solid var(--pressedStateColor);
 }
 
 /* Checked */
 
-.checkbox-input:checked + .checkbox-marker {
-  background: url(/images/icons/icon_checkmark.svg) no-repeat center;
+.checkbox-input:checked + .checkbox-box {
   background-color: var(--pressedStateColor);
-}
-
-.checkbox-input:hover + .checkbox-marker,
-.checkbox-input:focus + .checkbox-marker {
-  border: 1px solid var(--pressedStateColor);
-  /* box-shadow: 0 0 0 0.05em var(--pressedStateColor); */
+  color: var(--bodyColor);
 }
 
 /* Input fields styling */
@@ -287,6 +294,16 @@ p {
   min-width: 100%;
 }
 
+.form-textarea:hover,
+.form-textarea:focus {
+  border: 1px solid var(--pressedStateColor);
+}
+
+.form-textarea:focus-visible::placeholder,
+.form-textarea:focus-within::placeholder {
+  opacity: 0;
+}
+
 /* ****************************************************** */
 /* Header */
 /* ****************************************************** */
@@ -347,7 +364,7 @@ a.logo {
   padding: 24px 0;
   position: relative;
   /* transition values */
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 250ms var(--standardTransition);
 }
 
 .menu-link:hover,
@@ -425,7 +442,7 @@ a.logo {
   color: var(--textColor);
 
   /* transition values */
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 250ms var(--standardTransition);
 }
 
 .contact:hover,
@@ -610,8 +627,8 @@ a.logo {
   color: var(--lightSlateColor);
 
   /* transition values */
-  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border-color 250ms var(--standardTransition),
+    color 250ms var(--standardTransition);
 }
 
 .customers-list-link:hover,
@@ -751,7 +768,7 @@ a.logo {
   margin: 0 auto;
 
   /* transition values */
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 250ms var(--standardTransition);
 }
 
 /* ****************************************************** */
@@ -782,10 +799,10 @@ a.logo {
   cursor: pointer;
 
   /* transition values */
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 250ms var(--standardTransition),
+    background-color 250ms var(--standardTransition),
+    border-color 250ms var(--standardTransition),
+    box-shadow 250ms var(--standardTransition);
 }
 
 .filter-button:active,
@@ -820,7 +837,7 @@ a.logo {
 }
 
 .portfolio-item-link {
-  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: box-shadow 250ms var(--standardTransition);
 }
 
 .portfolio-item-link:hover,
@@ -866,7 +883,7 @@ a.logo {
   padding: 40px 32px;
 
   transform: translateY(100%);
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 250ms var(--standardTransition);
 }
 
 .portfolio-item-link:hover .portfolio-item-overlay,
@@ -933,7 +950,6 @@ a.logo {
   padding: 24px;
   display: flex;
   flex-direction: column;
-
   transition: transform var(--standardTransition);
 }
 
