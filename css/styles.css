@@ -178,7 +178,7 @@ p {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-top: 8px;
+  margin-bottom: 24px;
   font-family: 'Roboto';
   font-size: 12px;
   line-height: 1.17em;
@@ -243,18 +243,20 @@ p {
 /* Input fields styling */
 
 .form-label {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  width: 100%;
   font-size: 12px;
   line-height: 1.17em;
   letter-spacing: 0.01em;
   color: var(--lightSlateColor);
   position: relative;
+  margin-bottom: 8px;
+  display: block;
 }
 
 .form-input {
   height: 40px;
+  width: 100%;
+  margin-top: 4px;
   border: 1px solid var(--textModalTransparentColor);
   border-radius: 4px;
   padding: 8px 8px 8px 38px;
@@ -296,14 +298,16 @@ p {
 /* Textarea styling */
 
 .form-textarea {
+  width: 100%;
   border: 1px solid var(--textModalTransparentColor);
   border-radius: 4px;
   padding: 8px;
   font-size: 12px;
   line-height: 1.17em;
   letter-spacing: 0.04em;
-  max-width: 100%;
-  min-width: 100%;
+  resize: none;
+  margin-top: 4px;
+  transition: border var(--standardTransition);
 }
 
 .form-textarea:hover,
@@ -315,7 +319,6 @@ p {
 .form-textarea:focus-within::placeholder {
   opacity: 0;
 }
-
 /* ****************************************************** */
 /* Header */
 /* ****************************************************** */
@@ -959,9 +962,8 @@ a.logo {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
     0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
+  padding: 72px 24px 24px;
+
   transition: transform var(--standardTransition);
 }
 
@@ -1008,14 +1010,7 @@ a.logo {
   line-height: 1.5em;
   text-align: center;
   letter-spacing: 0.02em;
-  margin-top: calc(72px - 24px);
-}
-
-.modal-form {
-  margin-top: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  margin-bottom: 24px;
 }
 
 .form-link {
@@ -1029,6 +1024,6 @@ a.logo {
   color: var(--pressedStateColor);
 }
 
-.modal-btn-send {
-  margin-top: 24px;
+.modal-textarea-label {
+  margin-bottom: 16px;
 }
