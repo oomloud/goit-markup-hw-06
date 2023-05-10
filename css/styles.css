@@ -728,6 +728,7 @@ a.logo {
 .subscribe-form {
   display: flex;
   gap: 24px;
+  align-items: center;
 }
 
 .footer-subscribe-input {
